@@ -22,6 +22,7 @@
       .then(response => response.json())
       .then(array => {
         const titles = array.map(item => item.title);
+        console.log(array);
         let htmlContent = '<ul class="posts-list">';
         titles.forEach(title => {
           htmlContent += `<li>${title}</li>`;
@@ -39,6 +40,7 @@
     fetch('https://jsonplaceholder.typicode.com/posts/4')
       .then(response => response.json())
       .then(item => {
+        console.log(item);
         let postContent = '<div class="single-post">';
         postContent += '<h2>'+item.id+'. '+item.title+'</h2>';
         postContent += '<p>'+item.body+'</p>';
@@ -90,7 +92,7 @@
       body: document.getElementById('body').value,
       userId: parseInt(document.getElementById('userId').value)
     };
-
+    console.log('Dane formularza:', formData);
     fetch('https://jsonplaceholder.typicode.com/posts', {
       method: 'POST',
       headers: {
@@ -100,6 +102,7 @@
     })
     .then(response => response.json())
     .then(data => {
+      console.log('Odpowiedź z serwera:', data);
       formResult.innerHTML = `
         <div class="success">
           <p><strong>Dodano nowy post o ID =</strong> ${data.id}</p>
